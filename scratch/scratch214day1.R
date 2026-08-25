@@ -3,12 +3,12 @@ library(tidyverse)
 # Goal: Figure with each Ion represented separately (facet wrap) for years 1988 to 1995
 # Reading in all the data
 prm_data <- read_csv("data/knb-lter-luq.20.4923064/RioMameyesPuenteRoto.csv")
-bq1_data <- read_csv("data/knb-lter-luq.20.4923064/QuebradaCuenca1-Bisley.csv")
+BQ1_data <- read_csv("data/knb-lter-luq.20.4923064/QuebradaCuenca1-Bisley.csv")
 bq2_data <- read_csv("data/knb-lter-luq.20.4923064/QuebradaCuenca2-Bisley.csv")
 bq3_data <- read_csv("data/knb-lter-luq.20.4923064/QuebradaCuenca3-Bisley.csv")
 
 # Extracting only the relevant columns to the figure
-clean_bq1 <- bq1_data |> 
+clean_bq1 <- BQ1_data |> 
   select(c(Sample_ID, Sample_Date, K, `NO3-N`, Mg, Ca, `NH4-N`))
 
 clean_bq2 <- bq2_data |> 
@@ -21,7 +21,7 @@ clean_prm <- prm_data |>
   select(c(Sample_ID, Sample_Date, K, `NO3-N`, Mg, Ca, `NH4-N`))
 
 #Checking number of NAs
-print(sum(is.na(bq1_data$`NO3-N`)))
+print(sum(is.na(BQ1_data$`NO3-N`)))
 
 # Combining into one data frame
 combined_data <- rbind(clean_bq1, clean_bq2, clean_bq3, clean_prm)
