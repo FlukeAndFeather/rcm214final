@@ -1,4 +1,5 @@
 library(tidyverse)
+source("R/moving-average.R")
 
 # Goal: Figure with each Ion represented separately (facet wrap) for years 1988 to 1995
 # Reading in all the data
@@ -23,63 +24,17 @@ clean_prm <- prm_data |>
 #Checking number of NAs
 print(sum(is.na(bq1_data$`NO3-N`)))
 
-
-# Processing the moving average with a 9 week window for one site
-
+# Filtering site data
+filtered_bq1 <- clean_bq1 |> 
+  filter(year(Sample_Date) %in% c(1986:1995)) 
 filtered_bq2 <- clean_bq2 |> 
-  filter(year(Sample_Date) %in% c(1988:1995)) 
+  filter(year(Sample_Date) %in% c(1986:1995)) 
 
-average_table <- tibble(
-  window_start = seq(
-    ymd(filtered_bq2$Sample_Date[1]),
-    ymd(filtered_bq2$Sample_Date[nrow(filtered_bq2)]),
-    by = "9 weeks"
-  ),
-  K_mgl = NA,
-  `NO3-N_ugl` = NA,
-  Mg_mgl = NA,
-  Ca_mgl = NA,
-  `NH4-N_ugl`= NA
-)
+#moving average function
+moving_average(filtered_data)
 
-for (i in 1:nrow(average_table)) {
-  w1 <- average_table$window_start[i]
-
-  w2 <- w1 + weeks(9)
-
-  K_values <- filtered_bq2$K[
-    filtered_bq2$Sample_Date >= w1 &
-      filtered_bq2$Sample_Date < w2
-  ]
-  
-  NO3_values <- filtered_bq2$`NO3-N`[
-    filtered_bq2$Sample_Date >= w1 &
-      filtered_bq2$Sample_Date < w2
-  ]
-   
-Mg_values <- filtered_bq2$Mg[
-    filtered_bq2$Sample_Date >= w1 &
-      filtered_bq2$Sample_Date < w2
-  ]
-  
-  Ca_values <- filtered_bq2$Ca[
-    filtered_bq2$Sample_Date >= w1 &
-      filtered_bq2$Sample_Date < w2
-  ]
-  
-  NH4N_values <- filtered_bq2$`NH4-N`[
-    filtered_bq2$Sample_Date >= w1 &
-      filtered_bq2$Sample_Date < w2
-  ]
-  
-  average_table$K_mgl[i] <- mean(K_values, na.rm = TRUE)
-  average_table$`NO3-N_ugl`[i] <- mean(NO3_values, na.rm = TRUE)
-  average_table$Mg_mgl[i] <- mean(Mg_values, na.rm = TRUE)
-  average_table$Ca_mgl[i] <- mean(Ca_values, na.rm = TRUE)
-  average_table$`NH4-N_ugl`[i] <- mean(NH4N_values, na.rm = TRUE)
-}
-
-longer_average <- average_table |> pivot_longer(
+#Pivot longer
+longer_average <- moving_average(filtered_data =) |> pivot_longer(
     cols = c(K_mgl, `NO3-N_ugl`, Mg_mgl, Ca_mgl, `NH4-N_ugl`), 
     values_to = "Concentration",
     names_to = "Ion"
