@@ -1,0 +1,48 @@
+---
+title: "paper"
+format: html
+---
+
+## Background
+Necessary packages and functions to run the following code
+```{r}
+library(tidyverse)
+source("../R/moving-average.R")
+```
+
+
+## Data
+Importing the relevant data frames
+```{r}
+prm_data <- read_csv("../data/knb-lter-luq.20.4923064/RioMameyesPuenteRoto.csv")
+bq1_data <- read_csv("../data/knb-lter-luq.20.4923064/QuebradaCuenca1-Bisley.csv")
+bq2_data <- read_csv("../data/knb-lter-luq.20.4923064/QuebradaCuenca2-Bisley.csv")
+bq3_data <- read_csv("../data/knb-lter-luq.20.4923064/QuebradaCuenca3-Bisley.csv")
+```
+
+## Methods
+cleaning and processing the data to calculate the moving average for a 9-week window
+```{r}
+clean_bq1 <- bq1_data |> 
+  select(c(Sample_ID, Sample_Date, K, `NO3-N`, Mg, Ca, `NH4-N`))
+
+clean_bq2 <- bq2_data |> 
+  select(c(Sample_ID, Sample_Date, K, `NO3-N`, Mg, Ca, `NH4-N`))
+
+clean_bq3 <- bq3_data |> 
+  select(c(Sample_ID, Sample_Date, K, `NO3-N`, Mg, Ca, `NH4-N`))
+
+clean_prm <- prm_data |> 
+  select(c(Sample_ID, Sample_Date, K, `NO3-N`, Mg, Ca, `NH4-N`))
+
+filtered_bq1 <- clean_bq1 |> 
+  filter(year(Sample_Date) %in% c(1988:1995)) 
+filtered_bq2 <- clean_bq2 |> 
+  filter(year(Sample_Date) %in% c(1988:1995)) 
+
+moving_average(filtered_bq1)
+
+```
+
+## Results
+Producing a figure from the processed data
