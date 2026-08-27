@@ -1,7 +1,9 @@
 ## Automate
 
-
-- [ ] **The entire analysis is automated**
+### Data code were clear and concise, great job!!
+### graph looks great just need to create 
+Meets spec
+- [x ] **The entire analysis is automated**
   - Data reading and cleaning is handled in a standalone script that creates intermediate output(s).
   - The analysis is performed in a Quarto document that reads intermediate outputs.
   - Files in the R/ folder exclusively define functions and have no other side effects.
@@ -12,8 +14,8 @@
   - The Quarto document creates a figure that is a reasonable approximation of the original.
 
 ### Organize
-
-- [ ] **Data are properly organized**
+meets spec
+- [x ] **Data are properly organized**
   - _Raw_ data is contained in its own folder.
   - _Outputs_ are contained in a separate folder from raw data.
 
@@ -22,7 +24,8 @@
   - All code in the repo (_except_ in the scratch/ folder) is required for the analysis (i.e., no "safety blanket" code remaining)
 
 ### Document
-
+not yet
+### i believe there is a missing README.md 
 - [ ] **The repo has an effective README** 
   - A short, but descriptive title 
     - A README’s title is set to the repository name by default - change this!
