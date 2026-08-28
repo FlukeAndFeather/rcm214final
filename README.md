@@ -9,6 +9,7 @@ library(tidyverse)
 
 ### Data: 
 The raw datasets are housed in this GitHub repo in the data folder. The relevant files for the figure are:
+
 RioMameyesPuenteRoto.csv
 
 QuebradaCuenca1-Bisley.csv
@@ -17,7 +18,7 @@ QuebradaCuenca2-Bisley.csv
 
 QuebradaCuenca3-Bisley.csv
 
-The data can also be sourced online at [EDI Data Portal](https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-luq.20.4923064), 
+The data can also be sourced online at [EDI Data Portal](https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-luq.20.4923064).
 
 ## Repository Structure
 
