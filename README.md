@@ -29,7 +29,7 @@ The repository contains all of the data, code and figures produced for this proj
 - output: This folder contains the cleaned and processed data set ready to be plotted. 
 - paper: This folder contains the code manuscript
 - R: This folder contains the R script with the function definiton for moving average.
-- 1_clean_data.R: This contains the script that was used to clean, processes and visualize the data.
+- 1_clean_data.R: This contains the script that was used to clean and processes the data.
 - scratch: This contains the rough draft of the code manuscript.
 
 ## Current Contributors
