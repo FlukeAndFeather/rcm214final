@@ -27,7 +27,7 @@ QuebradaCuenca3-Bisley.csv
 
 
 ## Methods
-The 9-week moving averages of potassium, nitrate-N, magnesium, calcium, and ammonium-N were calculated for four sites representing Bisley, Puertro Rico streams before and after Hurricane Hugo. 
+The 9-week moving averages of potassium, nitrate-N, magnesium, calcium, and ammonium-N were calculated for four sites representing Bisley, Puerto Rico streams before and after Hurricane Hugo. 
 
 
 ## Results
