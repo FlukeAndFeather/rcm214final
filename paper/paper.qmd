@@ -1,48 +1,53 @@
 ---
-title: "paper"
+title: "Replicating the Analysis of Effects of Hurricane Disturbance on Stream Water Concentrations in Bisley, Puetro Rico Streams Before and After Hurricane Hugo"
+author: "Rachel Miller"
 format: html
 ---
 
 ## Background
-Necessary packages and functions to run the following code
-```{r}
-library(tidyverse)
-source("../R/moving-average.R")
-```
+The aim of this project is to replicate Figure 3 from Schaefer et al. (2000), displaying the concentration of five different ions in Bisley, Puetro Rico streams before and after Hurricane Hugo.
 
 
 ## Data
-Importing the relevant data frames
 ```{r}
-prm_data <- read_csv("../data/knb-lter-luq.20.4923064/RioMameyesPuenteRoto.csv")
-bq1_data <- read_csv("../data/knb-lter-luq.20.4923064/QuebradaCuenca1-Bisley.csv")
-bq2_data <- read_csv("../data/knb-lter-luq.20.4923064/QuebradaCuenca2-Bisley.csv")
-bq3_data <- read_csv("../data/knb-lter-luq.20.4923064/QuebradaCuenca3-Bisley.csv")
+#| output: false
+library(tidyverse)
+clean_data <- read_csv("../output/clean_data.csv")
 ```
+
+The raw data for this project was sourced from [EDI Data Portal](https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-luq.20.4923064), and is stored in the data folder. The following files were read to import data for the four relevant sites, and filtered to the years 1986 to 1995:
+
+RioMameyesPuenteRoto.csv
+QuebradaCuenca1-Bisley.csv
+QuebradaCuenca2-Bisley.csv
+QuebradaCuenca3-Bisley.csv
+
 
 ## Methods
-cleaning and processing the data to calculate the moving average for a 9-week window
+The 9-week moving averages of potassium, nitrate-N, magnesium, calcium, and ammonium-N were calculated for four sites representing Bisley. Puertro Rico streams before and after Hurricane Hugo. 
+
+
+## Results
 ```{r}
-clean_bq1 <- bq1_data |> 
-  select(c(Sample_ID, Sample_Date, K, `NO3-N`, Mg, Ca, `NH4-N`))
+#| echo: false
+#| warning: false
+library(tidyverse)
+clean_data <- read_csv("../output/clean_data.csv")
 
-clean_bq2 <- bq2_data |> 
-  select(c(Sample_ID, Sample_Date, K, `NO3-N`, Mg, Ca, `NH4-N`))
-
-clean_bq3 <- bq3_data |> 
-  select(c(Sample_ID, Sample_Date, K, `NO3-N`, Mg, Ca, `NH4-N`))
-
-clean_prm <- prm_data |> 
-  select(c(Sample_ID, Sample_Date, K, `NO3-N`, Mg, Ca, `NH4-N`))
-
-filtered_bq1 <- clean_bq1 |> 
-  filter(year(Sample_Date) %in% c(1988:1995)) 
-filtered_bq2 <- clean_bq2 |> 
-  filter(year(Sample_Date) %in% c(1988:1995)) 
-
-moving_average(filtered_bq1)
+ggplot(clean_data,
+    mapping = aes(
+      x = window_start, 
+      y = Concentration,
+      linetype = Site
+    )
+  ) + geom_line() +
+  facet_wrap("Ion", scales = "free", ncol = 1, strip.position = "left") +
+  geom_vline(xintercept = ymd('1989-09-17'), linetype = "dashed") +
+  labs(title = "Concentrations in Bisley, Puerto Rico Streams before and after Hurricane Hugo", x = "Years", y = "Concentration of Ions")
 
 ```
 
-## Results
-Producing a figure from the processed data
+## References
+McDowell, William H., and USDA Forest Service. International Institute Of Tropical Forestry (IITF). 2024. “Chemistry of Stream Water from the Luquillo Mountains.” Environmental Data Initiative. https://doi.org/10.6073/PASTA/F31349BEBDC304F758718F4798D25458.
+
+Schaefer, Douglas. A., William H. McDowell, Fredrick N. Scatena, and Clyde E. Asbury. 2000. “Effects of Hurricane Disturbance on Stream Water Concentrations and Fluxes in Eight Tropical Forest Watersheds of the Luquillo Experimental Forest, Puerto Rico.” Journal of Tropical Ecology 16 (2): 189–207. https://doi.org/10.1017/s0266467400001358.

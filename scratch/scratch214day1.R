@@ -9,13 +9,13 @@ bq3_data <- read_csv("data/knb-lter-luq.20.4923064/QuebradaCuenca3-Bisley.csv")
 
 # Filtering site data for each site to the relevant time frame
 filtered_prm <- prm_data |> 
-  filter(year(Sample_Date) %in% c(1988:1995))
+  filter(year(Sample_Date) %in% c(1986:1995))
 filtered_bq1 <- bq1_data |> 
-  filter(year(Sample_Date) %in% c(1988:1995)) 
+  filter(year(Sample_Date) %in% c(1986:1995)) 
 filtered_bq2 <- bq2_data |> 
-  filter(year(Sample_Date) %in% c(1988:1995))
+  filter(year(Sample_Date) %in% c(1986:1995))
 filtered_bq3 <- bq3_data |> 
-  filter(year(Sample_Date) %in% c(1988:1995))
+  filter(year(Sample_Date) %in% c(1986:1995))
 
 # Calling the stored moving average function to calculate moving average for each site
 prm_smoothed <- moving_average(filtered_prm)
@@ -48,8 +48,9 @@ ggplot(longer_combined,
     )
   ) + geom_line() +
   facet_wrap("Ion", scales = "free", ncol = 1, strip.position = "left") +
-  labs(title = "Concentrations in Bisley, Puerto Rico Streams before and after Hurricane Hugo") +
-  xlab("Years")
+  geom_vline(xintercept = ymd('1989-09-17'), linetype = "dashed") +
+  labs(title = "Concentrations in Bisley, Puerto Rico Streams before and after Hurricane Hugo", x = "Years", y = "Concentration of Ions")
+
 
 
 # Safety blanket code
