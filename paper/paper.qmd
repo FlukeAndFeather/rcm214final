@@ -34,15 +34,20 @@ The 9-week moving averages of potassium, nitrate-N, magnesium, calcium, and ammo
 ```{r}
 #| echo: false
 #| warning: false
-ggplot(clean_data,
-    mapping = aes(
-      x = window_start, 
-      y = Concentration,
-      linetype = Site
-    )
-  ) + geom_line() +
+ggplot(
+  clean_data,
+  mapping = aes(
+    x = window_start,
+    y = Concentration,
+    linetype = Site
+  )
+) +
+  geom_line() +
   facet_wrap("Ion", scales = "free", ncol = 1, strip.position = "left") +
   geom_vline(xintercept = ymd('1989-09-17'), linetype = "dashed") +
-  labs(title = "Concentrations in Bisley, Puerto Rico Streams before and after Hurricane Hugo", x = "Years", y = "Concentration of Ions")
-
+  labs(
+    title = "Concentrations in Bisley, Puerto Rico Streams before and after Hurricane Hugo",
+    x = "Years",
+    y = "Concentration of Ions"
+  )
 ```
