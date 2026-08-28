@@ -33,8 +33,12 @@ The repository contains all of the data, code and figures produced for this proj
 - scratch: This contains the rough draft of the code manuscript.
 
 ## Current Contributors
-Rachel Miller, UC Santa Barbara
-https://github.com/RachelMGitH
+### Author: Rachel Miller, UC Santa Barbara [https://github.com/RachelMGitH]
+
+### Contributors:
+Amapola Garcia [https://github.com/Amapolaa]
+Courtney lorey [https://github.com/cllorey]
+
 
 ## References
 McDowell, William H., and USDA Forest Service. International Institute Of Tropical Forestry (IITF). 2024. “Chemistry of Stream Water from the Luquillo Mountains.” Environmental Data Initiative. https://doi.org/10.6073/PASTA/F31349BEBDC304F758718F4798D25458.
