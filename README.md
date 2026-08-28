@@ -33,7 +33,8 @@ The repository contains all of the data, code and figures produced for this proj
 - scratch: This contains the rough draft of the code manuscript.
 
 ## Current Contributors
-### Author: Rachel Miller, UC Santa Barbara [https://github.com/RachelMGitH]
+### Author: 
+Rachel Miller, UC Santa Barbara [https://github.com/RachelMGitH]
 
 ### Contributors:
 Amapola Garcia [https://github.com/Amapolaa]
