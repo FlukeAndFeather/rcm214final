@@ -4,6 +4,7 @@ moving_average <- function(filtered_data) {
   # Initialize a tibble to contain the results
   result <- tibble(
     window_start = seq(ymd(filtered_data$Sample_Date[1]), ymd(filtered_data$Sample_Date[nrow(filtered_data)]), by = "9 weeks"),
+    site = filtered_data$Sample_ID[1], # This line will create a site column in your tibble, which will be populated accordingly by each of the filtered dataframes when you run the for loop
     k_mgl = NA,
     mg_mgl = NA,
   no3_ugl = NA,
