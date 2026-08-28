@@ -38,7 +38,8 @@ Rachel Miller, UC Santa Barbara [https://github.com/RachelMGitH]
 
 ### Contributors:
 Amapola Garcia [https://github.com/Amapolaa]
-Courtney lorey [https://github.com/cllorey]
+
+Courtney Lorey [https://github.com/cllorey]
 
 
 ## References
